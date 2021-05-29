@@ -58,10 +58,16 @@ for g in data['sample'].unique():
 fig = plt.figure(figsize=(10, 8))
 ax = fig.add_subplot()
 
-
 for g in data['sample'].unique():
     temp = data.loc[data['sample'] == g]
-    ax.bar(temp.index, temp['abundance'], log=true, color=temp['colour'])
-    ax.text((((temp.tail(1).index + temp.head(1).index)/2)[0]), temp['abundance'].max(), temp['sample'].unique()[0])
+    ax.bar(temp.index, temp['abundance'], log=true, color=temp['colour'], label=temp['accession'])
+    ax.text((((temp.tail(1).index + temp.head(1).index)//2)[0])-2, temp['abundance'].max() *1.2, temp['sample'].unique()[0])
+
+for i in range(len(data)):
+    # plt.text(i, data['abundance'][i]/2, data['accession'][i], rotation=90)
+    # plt.text(i, data['abundance'][i]/2, data['accession'][i], ha = 'center', va = 'center',  rotation=90)
+    plt.text(i, 3000, data['accession'][i], ha='center', va='center', rotation=90)
+
+plt.subplots_adjust( bottom=0.2)
 
 plt.show()
