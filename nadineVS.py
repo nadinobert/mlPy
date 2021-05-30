@@ -96,5 +96,8 @@ plt.subplots_adjust(bottom=0.2, right=0.9)
 ax.set_ylabel('intensity')
 # name plot
 plt.title('set title here')
-# show the plot
-plt.show()
+
+# show the plot or save it as a .png
+# plt.show()
+plt.savefig('nadinePlot.png')
+
