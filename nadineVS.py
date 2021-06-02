@@ -10,11 +10,11 @@ from sqlalchemy import *
 engine = create_engine('sqlite:///data/ms_data.sqlite')
 conn = engine.connect()
 
-data = pd.read_sql_query('''SELECT proteins.accession, proteins.abundance, result.sample, proteins.description
+data = pd.read_sql_query('''SELECT proteins.accession, CASE WHEN proteins.abundance <> '' THEN proteins.abundance ELSE 0 END AS abundance, result.sample, proteins.description
 FROM proteins
 inner join result on result.id = proteins.result_id
 inner join analysis on analysis.id = result.analysis_id
-where date = '2021-02-08' AND
+where date = '2021-04-23' AND
 (description LIKE '%rdhA%'
    OR description LIKE '%rdhB%'
    OR description LIKE '%OmeA%'
